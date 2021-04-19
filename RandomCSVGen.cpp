@@ -36,13 +36,13 @@ string getName() {
 
 void getStats(int& age, int& matches, int& min, int& goals, int& shots, int& assists, int& penalties,  int& pAtt, int& yellow, int& red) {
     age = getRand(15, 40);
-    matches = getRand(1000, 10000);
+    matches = getRand(300, 1000);
     min = getRand(30, 91);
-    shots = getRand(10000, 20000);
-    goals = getRand(0, 10000);
-    assists = getRand(0, 30000);
-    pAtt = getRand(1000, 3000);
-    penalties = getRand(0, 1000);
+    shots = getRand(500, 900);
+    goals = getRand(0, 500);
+    assists = getRand(0, 1200);
+    pAtt = getRand(100, 300);
+    penalties = getRand(0, 100);
     yellow = getRand(0, 50);
     red = getRand(0, 15);
 }
