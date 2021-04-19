@@ -1,28 +1,33 @@
 // Kickin Stats Code.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
+#pragma once
 #include <iostream>
 #include "Radix Sort.h"
+#include "Data Gen/getPlayerData.h"
+#include "Data Gen/RandomCSVGen.h"
+#include "Data Gen/Player.h"
 
-void radixSort(int arr[], int arrsize) {
+void radixSort(Player* players, int arrsize, int stat) {
     // 
     int maxValue = 0;
 
     for (int i = 0; i < arrsize; i++) {
-        if (arr[i] > maxValue)
-            maxValue = arr[i];
+        if (players[i].stats[stat] > maxValue)
+            maxValue = players[i].stats[stat];
     }
 
+    
 
     int pTen = 0; // Keeps track of what power of ten is being used to get the digit for countSort
     while (maxValue > 0) {
-        countSort(arr, arrsize, pTen);
+        countSort(players, arrsize, stat, pTen);
 
         maxValue /= 10;
         pTen++;
     }
 }
-void countSort(int arr[], int arrsize, int pTen) {
+void countSort(Player* players, int arrsize, int stat, int pTen) {
 
     // Frequency array will store the frequency of each digit in base 10 (0-9) in the input array
     int frequency[10] = { };
@@ -32,7 +37,7 @@ void countSort(int arr[], int arrsize, int pTen) {
     int modValue = pow(10, pTen);
     // Loop through input array size, increment the frequency of the digit at current array index in the frequency array
     for (int i = 0; i < arrsize; i++) {
-        frequency[(arr[i] / modValue) % 10]++;
+        frequency[(players[i].stats[stat] / modValue) % 10]++;
     }
     //printArray(frequency, 10);
 
@@ -43,7 +48,7 @@ void countSort(int arr[], int arrsize, int pTen) {
         runningSum = frequency[i];
     }
 
-    cout << endl;
+    
     //printArray(frequency, 10);
 
     // SHIFT THE ARRAY TO THE RIGHT BY 1 INDEX
@@ -52,32 +57,20 @@ void countSort(int arr[], int arrsize, int pTen) {
     }
     frequency[0] = 0;
 
-    cout << endl << endl;
+    
 
     //printArray(frequency, 10);
 
-    int outputarr[100000] = {};
+    Player* outputarr = new Player[100000];
     for (int i = 0; i < arrsize; i++) {
-        outputarr[frequency[(arr[i] / modValue) % 10]] = arr[i];
-        frequency[(arr[i] / modValue) % 10]++;
+        outputarr[frequency[(players[i].stats[stat] / modValue) % 10]] = players[i];
+        frequency[(players[i].stats[stat] / modValue) % 10]++;
     }
-    cout << endl;
+    
 
 
     for (int i = 0; i < arrsize; i++) {
-        arr[i] = outputarr[i];
-    }
-}
-
-int getRand(unsigned int min, unsigned int max) {
-    unsigned int diff = max - min;
-    return rand() % diff + min;
-}
-
-void printArray(int arr[], int size) {
-
-    for (int i = 0; i < size; i++) {
-        cout << i << ": " << arr[i] << endl;
+        players[i] = outputarr[i];
     }
 }
 

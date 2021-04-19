@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int getRand(unsigned int min, unsigned int max);
+int getRand(int min, int max);
 string getName();
-void getStats(unsigned int& age, unsigned int& matches, unsigned int& min, unsigned int& goals, unsigned int& shots, unsigned int& assists, unsigned int& penalties, unsigned  int& pAtt, unsigned int& yellow, unsigned int& red);
+void getStats(int& age, int& matches, int& min, int& goals, int& shots, int& assists, int& penalties,  int& pAtt, int& yellow, int& red);
 void makeCSV();
