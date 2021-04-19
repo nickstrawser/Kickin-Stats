@@ -2,8 +2,8 @@
 
 
 
-int getRand(unsigned int min, unsigned int max) {
-    unsigned int diff = max - min;
+int getRand(int min, int max) {
+    int diff = max - min;
     return rand() % diff + min;
 }
 
@@ -34,15 +34,15 @@ string getName() {
     return out;
 }
 
-void getStats(unsigned int& age, unsigned int& matches, unsigned int& min, unsigned int& goals, unsigned int& shots, unsigned int& assists, unsigned int& penalties, unsigned  int& pAtt, unsigned int& yellow, unsigned int& red) {
+void getStats(int& age, int& matches, int& min, int& goals, int& shots, int& assists, int& penalties,  int& pAtt, int& yellow, int& red) {
     age = getRand(15, 40);
-    matches = getRand(300, 1000);
+    matches = getRand(1000, 10000);
     min = getRand(30, 91);
-    shots = getRand(500, 900);
-    goals = getRand(0, 500);
-    assists = getRand(0, 1200);
-    pAtt = getRand(100, 300);
-    penalties = getRand(0, 100);
+    shots = getRand(10000, 20000);
+    goals = getRand(0, 10000);
+    assists = getRand(0, 30000);
+    pAtt = getRand(1000, 3000);
+    penalties = getRand(0, 1000);
     yellow = getRand(0, 50);
     red = getRand(0, 15);
 }
@@ -54,13 +54,14 @@ void makeCSV()
 
     myFile << "First,Last,Age,Matches Played,Min,Goals,Shots,Assists,Penalties Made,Penalties Attempted,Yellow Cards,Red Cards\n";
 
-    unsigned int age, matches, min, goals, shots, assists, penalties, pAtt, yellow, red;
+    int age, matches, min, goals, shots, assists, penalties, pAtt, yellow, red;
     getStats(age, matches, min, goals, shots, assists, penalties, pAtt, yellow, red);
 
     for (int i = 0; i < 100000; i++) {
         getStats(age, matches, min, goals, shots, assists, penalties, pAtt, yellow, red);
 
-        myFile << getName() << "," << getName() << "," << age << "," << matches << "," << min << "," << goals << "," << shots << "," << assists << "," << pAtt << "," << penalties << "," << yellow << "," << red << "\n";
+        myFile << getName() << "," << getName() << "," << age << "," << matches << "," << min << "," << goals << "," << shots << "," << assists << "," << penalties << "," << pAtt << "," << yellow << "," << red << "\n";
     }
     myFile.close();
+    cout << "Finished Writing File" << endl;
 }
