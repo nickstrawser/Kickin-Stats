@@ -4,25 +4,25 @@ Player::Player(string first, string last, int age, int matches, int min, int goa
 	this->first = first;
 	this->last = last;
 	this->age = age;
+	this->stats[0] = age;
 	this->matches = matches;
+	this->stats[1] = matches;
 	this->min = min;
+	this->stats[2] = min;
 	this->goals = goals;
+	this->stats[3] = goals;
 	this->shots = shots;
+	this->stats[4] = shots;
 	this->assists = assists;
+	this->stats[5] = assists;
 	this->penalties = penalties;
+	this->stats[6] = penalties;
 	this->pAtt = pAtt;
+	this->stats[7] = pAtt;
 	this->yellow = yellow;
+	this->stats[8] = yellow;
 	this->red = red;
-	stats[0] = age;
-	stats[1] = matches;
-	stats[2] = min;
-	stats[3] = goals;
-	stats[4] = shots;
-	stats[5] = assists;
-	stats[6] = penalties;
-	stats[7] = pAtt;
-	stats[8] = yellow;
-	stats[9] = red;
+	this->stats[9] = red;
 }
 
 Player::Player() {
@@ -40,18 +40,6 @@ Player::Player() {
 	red = 0;
 }
 
-void Player::print() {
-	cout << "First: " << first << endl;
-	cout << "Last: " << last << endl;
-	cout << "Age: " << age << endl;
-	cout << "Matches: " << matches << endl;
-	cout << "Minutes: " << min << endl;
-	cout << "Goals: " << goals << endl;
-	cout << "Shots: " << shots << endl;
-	cout << "Assists: " << assists << endl;
-	cout << "Penalties: " << penalties << endl;
-	cout << "Penalty Attempts: " << pAtt << endl;
-	cout << "Yellow Cards: " << yellow << endl;
-	cout << "Red Cards: " << red << endl;
-	cout << endl;
+void Player::print(int stat) {
+	printf("%-13s %-13s %3d %7d \n", first.c_str(), last.c_str(), age, stats[stat]);
 }
